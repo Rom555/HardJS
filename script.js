@@ -22,7 +22,10 @@ for (let i = 2; i <= 100; i++) {
   let flag = true;
 
   for (let element of prime) {
-    if (i % element === 0) flag = false;
+    if (i % element === 0) {
+      flag = false;
+      break;
+    }
   }
 
   if (flag) {
@@ -39,7 +42,10 @@ for (let i = 2; i <= 1000000; i++) {
   let sqrt = Math.ceil(Math.sqrt(i));
 
   for (let element of primeBig) {
-    if (i % element === 0) flag = false;
+    if (i % element === 0) {
+      flag = false;
+      break;
+    }
     if (element >= sqrt) {
       break;
     }
