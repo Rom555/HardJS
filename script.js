@@ -1,5 +1,10 @@
 'use strict';
 
+document.body.style.height = '100vh';
+document.body.style.margin = '0px';
+let bodyWidth = +getComputedStyle(document.body).width.slice(0, -2);
+let bodyHeight = +getComputedStyle(document.body).height.slice(0, -2);
+
 const DomElement = function (selector, height, width, bg, fontSize) {
   this.selector = selector;
   this.height = +height;
@@ -32,20 +37,37 @@ DomElement.prototype.createElem = function (text) {
 };
 
 const moveElem = (elem) => {
-  event.preventDefault();
+  let top = +elem.style.top.slice(0, -2);
+  let left = +elem.style.left.slice(0, -2);
 
   switch (event.key) {
     case 'ArrowUp':
-      elem.style.top = +elem.style.top.slice(0, -2) - 10 + 'px';
+      if (top < 10) {
+        break;
+      }
+
+      elem.style.top = top - 10 + 'px';
       break;
     case 'ArrowDown':
-      elem.style.top = +elem.style.top.slice(0, -2) + 10 + 'px';
+      if (top > bodyHeight - 10 - 100) {
+        break;
+      }
+
+      elem.style.top = top + 10 + 'px';
       break;
     case 'ArrowLeft':
-      elem.style.left = +elem.style.left.slice(0, -2) - 10 + 'px';
+      if (left < 10) {
+        break;
+      }
+
+      elem.style.left = left - 10 + 'px';
       break;
     case 'ArrowRight':
-      elem.style.left = +elem.style.left.slice(0, -2) + 10 + 'px';
+      if (left > bodyWidth - 10 - 100) {
+        break;
+      }
+
+      elem.style.left = left + 10 + 'px';
       break;
   }
 };
@@ -55,6 +77,8 @@ const newELem = new DomElement('.square', 100, 100, 'red', 20);
 document.addEventListener('DOMContentLoaded', () => {
   let elem = newELem.createElem();
   elem.style.position = 'absolute';
+  elem.style.top = '10px';
+  elem.style.left = '10px';
   document.body.append(elem);
 
   document.addEventListener('keydown', () => {
