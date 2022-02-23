@@ -6,7 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
+    <style>
+      .big-sqare {
+        position: relative;
+        margin-top: 20px;
+        width: 600px;
+        height: 600px;
+        border: 1px solid #000;
+      }
+      .square {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+
     <script defer src="script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <button id="animation">Анимация</button>
+    <button id="reset">Обновить</button>
+    <div class="big-sqare">
+      <div class="square"></div>
+    </div>
+  </body>
 </html>
